@@ -1,5 +1,5 @@
 # Cloud-architecture-case-studies
-94% of cloud peojects are overspent, and as an elite Solution architect, I created This repository for World class enterprise-grade infrastructure case studies, built in secure, cost- efficient, scalable, reliable way.
+94% of cloud peojects are overspending, and as an elite Solution architect, I created This repository for World class enterprise-grade infrastructure case studies, built in secure, cost- efficient, scalable, reliable way.
 
 **Yasser Alaa - Solution architect | FinOps | Cloud security**
   *  design enterprise-grade cloud architectures.
