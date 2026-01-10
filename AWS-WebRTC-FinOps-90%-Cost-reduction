@@ -1,0 +1,24 @@
+# Executive Summary
+A local audio chat application was struggling with scaling costs, paying $3,000 – $4,000 USD/month using a managed third-party WebRTC SDK. By migrating to a custom-built, cost-optimized AWS infrastructure, I reduced the monthly burn to $288 USD (a 90% saving) while achieving sub-30ms latency for the Middle Eastern market.
+
+
+## The Problem: "The Managed Service Trap"
+The client had ~200 concurrent users geographically concentrated in the Middle East. The legacy managed service charged aggressive per-minute fees, making growth financially unsustainable. There was no "economy of scale"; more users simply meant a bigger bill.
+
+## The Solution: Architectural FinOps
+1. High-Performance Networking
+I designed a Multi-AZ VPC with 4 subnets (2 Public, 2 Private) to ensure high availability.
+ * AWS Global Accelerator: Implemented to onboard traffic at the closest edge location. This reduced jitter and brought latency down to <30ms—a massive performance leap over the public internet.
+ * Custom NAT Instances: Instead of the managed AWS NAT Gateway , I deployed self-managed NAT instances. This saved roughly $60/month in fixed fees and eliminated data processing "taxes."
+2. Serverless Signaling Layer
+I replaced the expensive third-party signaling SDK with Google Firestore.
+ * Spark Tier Optimization: I architected the signaling state to remain within the No-Cost Spark Tier (50k reads/20k writes per day).
+ * Result: Database baseline cost dropped to $0.00/month. The system is ready to scale to the "Pay-As-You-Go" tier only when traffic justifies the cost.
+3. Compute Strategy: "Base and Burst"
+To maximize the budget, I used a hybrid compute model:
+ * Baseline (Savings Plan): 6 EC2 instances (4 for audio processing, 2 for NAT) were moved to a 1-Year AWS Savings Plan. This provided the reliability of On-Demand at a massive discount.
+ * Burst (Spot Instances): The Auto Scaling Group (ASG) is configured to use Spot Instances for horizontal scaling. By leveraging spare AWS capacity, we scale up at 90% off regular prices.
+ * Self-Healing: Linked the ASG to CloudWatch alarms to automatically replace failing nodes or scale during unexpected traffic spikes.
+📊 Final Results
+
+# instead of an averege 3,500$ per month, the client now is **paying 290$ per month for 10X performance!
