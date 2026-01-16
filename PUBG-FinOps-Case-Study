@@ -1,1 +1,17 @@
+# PUBG Migration
+## I'll try here to explain this in simple words since I don't expect the cloud architects and engineers to be here, but the CTOs and CEOs.
 
+## PUBG problem
+### In the old architecture, the performance wasn't the best, and the cost was overbilled; they picked the wrong resources and the wrong architecture. 
+
+###The architecture was inefficient as they used Intel/AMD servers for computing. These servers are powerful, but expensive—like lighting all the lights of your house when you need only one.
+
+## The solutions
+
+### Instead of renting servers by the month or hour, they used a tool called Karpenter to rent them by the second. Because of this, they are paying for only what they used; they cut the IDLE.
+
+### They moved servers closer to the players (Edge locations) so the "Lag" (Latency) dropped, meaning they needed fewer servers to handle the same number of players.
+
+That was a brief explanation for the CTOs and CEOs who are NOT cloud engineers, in simple words so that they understand how FinOps worked for PUBG and how they optimized cloud cost-performance, saved 35% of their bill, and increased performance by 40%.
+
+# NOTE : This was explained in simple words for CTOs, and CEOs as mentioned, But I can explain it deeply and technacly for cloud engineers.
